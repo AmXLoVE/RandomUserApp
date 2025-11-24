@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import ru.myapplication.randomuserapp.presentation.usercreate.UserCreateViewModel
 import ru.myapplication.randomuserapp.presentation.userdetail.UserDetailViewModel
 import ru.myapplication.randomuserapp.presentation.userlist.UserListViewModel
 
@@ -25,4 +26,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(UserDetailViewModel::class)
     abstract fun bindDetailsViewModel(vm: UserDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserCreateViewModel::class)
+    abstract fun bindCreateViewModel(vm: UserCreateViewModel): ViewModel
 }

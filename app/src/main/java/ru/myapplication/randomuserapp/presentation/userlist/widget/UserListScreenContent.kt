@@ -3,12 +3,12 @@ package ru.myapplication.randomuserapp.presentation.userlist.widget
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,8 +16,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,29 +29,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorProducer
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import androidx.compose.ui.zIndex
 import ru.myapplication.randomuserapp.R
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserDetails
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListModel
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
 
 @Composable
-internal fun UserListContent(
+internal fun UserListScreenContent(
     state: UserListState.Content,
 ) {
-    Column(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxSize(),
     ) {
-        repeat(
-            times =state.userListModel.userList.size,
-        ) {
+        items(state.userListModel.userList.size) { userNumber ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -109,7 +111,8 @@ internal fun UserListContent(
                             Row(
                             ) {
                                 Text(
-                                    text = state.userListModel.userList[it].firstName + " " + state.userListModel.userList[it].lastName,
+                                    text = state.userListModel.userList[userNumber].firstName +
+                                            " " + state.userListModel.userList[userNumber].lastName,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                 )
@@ -122,7 +125,7 @@ internal fun UserListContent(
 
                             Row() {
                                 Text(
-                                    text = state.userListModel.userList[it].phone
+                                    text = state.userListModel.userList[userNumber].phone
                                 )
                             }
 
@@ -145,7 +148,7 @@ internal fun UserListContent(
                                         .padding(
                                             start = 4.dp
                                         ),
-                                    text = state.userListModel.userList[it].country
+                                    text = state.userListModel.userList[userNumber].country
                                 )
                             }
                         }
@@ -167,6 +170,8 @@ internal fun UserListContent(
             }
         }
     }
+
+    UserAddButton()
 }
 
 @Preview(showBackground = true)
@@ -181,62 +186,96 @@ private fun UserListContentPreview() {
 //        contentScale = ContentScale.Crop,
 //    )
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        UserListContent(
-            state = UserListState.Content(
-                userListModel = UserListModel(
-                    userList = listOf(
-                        UserDetails(
-                            id = 1,
-                            firstName = "Ivan",
-                            lastName = "Ivanov",
-                            gender = "male",
-                            age = 25,
-                            email = "ad@ad",
-                            phone = "123456789",
-                            picture = "",
-                            country = "RU",
-                            photoUrl = ""
-                        ),
-                        UserDetails(
-                            id = 1,
-                            firstName = "Ivan",
-                            lastName = "Ivanov",
-                            gender = "male",
-                            age = 25,
-                            email = "ad@ad",
-                            phone = "123456789",
-                            picture = "",
-                            country = "RU",
-                            photoUrl = ""
-                        ),
-                        UserDetails(
-                            id = 1,
-                            firstName = "Ivan",
-                            lastName = "Ivanov",
-                            gender = "male",
-                            age = 25,
-                            email = "ad@ad",
-                            phone = "123456789",
-                            picture = "",
-                            country = "RU",
-                            photoUrl = ""
-                        ),
-                        UserDetails(
-                            id = 1,
-                            firstName = "Ivan",
-                            lastName = "Ivanov",
-                            gender = "male",
-                            age = 25,
-                            email = "ad@ad",
-                            phone = "123456789",
-                            picture = "",
-                            country = "RU",
-                            photoUrl = ""
-                        ),
-                    )
+    UserListScreenContent(
+        state = UserListState.Content(
+            userListModel = UserListModel(
+                userList = listOf(
+                    UserDetails(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserDetails(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserDetails(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserDetails(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserDetails(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserDetails(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserDetails(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
                 )
-            ),
-        )
-    }
+            )
+        ),
+    )
 }

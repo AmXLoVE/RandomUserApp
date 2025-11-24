@@ -9,9 +9,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListModel
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
-import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListContent
-import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListError
-import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListLoading
+import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListScreenContent
+import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListScreenError
+import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListScreenLoading
 
 @Composable
 internal fun UserListScreen(
@@ -27,13 +27,15 @@ private fun UserListScreenContent(
     state: UserListState,
 ) {
     when (state) {
-        is UserListState.Content -> UserListContent(
+        is UserListState.Content -> UserListScreenContent(
             state = state,
         )
 
-        UserListState.Error -> UserListError()
+        UserListState.Error -> UserListScreenError(
+            onReloadPage = {}
+        )
 
-        UserListState.Loading -> UserListLoading()
+        UserListState.Loading -> UserListScreenLoading()
     }
 }
 
@@ -61,7 +63,7 @@ private fun UserListScreenContentErrorPreview() {
 @Composable
 private fun UserListScreenContentContentPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
-        UserListScreenContent(
+        ru.myapplication.randomuserapp.presentation.userlist.UserListScreenContent(
             state = UserListState.Content(
                 userListModel = UserListModel(userList = emptyList())
             ),
