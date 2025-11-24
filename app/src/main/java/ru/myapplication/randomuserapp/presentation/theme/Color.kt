@@ -1,4 +1,4 @@
-package ru.myapplication.randomuserapp.ui.theme
+package ru.myapplication.randomuserapp.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
