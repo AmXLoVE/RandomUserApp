@@ -6,7 +6,6 @@ internal sealed interface UserCreateState {
     data object Error : UserCreateState
 
     data class Content(
-        val genderList: List<Gender>,
-        val countryList: List<Country>,
+        val userCreateData: UserCreateData
     ) : UserCreateState
 }

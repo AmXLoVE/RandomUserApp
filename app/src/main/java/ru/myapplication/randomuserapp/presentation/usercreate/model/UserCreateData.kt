@@ -1,9 +1,6 @@
 package ru.myapplication.randomuserapp.presentation.usercreate.model
 
-data class Gender (
-    val genderName: String
-)
-
-data class Country (
-    val countryName: String,
+internal data class UserCreateData (
+    val genderList: List<String>,
+    val countryList: List<String>,
 )
