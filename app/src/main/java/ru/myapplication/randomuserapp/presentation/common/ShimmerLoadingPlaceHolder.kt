@@ -28,7 +28,7 @@ fun Modifier.shimmerLoading(
                 durationMillis = durationMillis,
                 easing = LinearEasing,
             ),
-            repeatMode = RepeatMode.Restart,
+            repeatMode = RepeatMode.Reverse,
         ),
         label = "",
     )
@@ -38,7 +38,7 @@ fun Modifier.shimmerLoading(
             brush = Brush.linearGradient(
                 colors = listOf(
                     Color.LightGray.copy(alpha = 0.2f),
-                    Color.LightGray.copy(alpha = 1f),
+                    Color.Gray.copy(alpha = 0.6f),
                     Color.LightGray.copy(alpha = 0.2f),
                 ),
                 start = Offset(x = translateAnimation - 1500f, y = translateAnimation - 1500f),
