@@ -1,9 +1,12 @@
 package ru.myapplication.randomuserapp.di
 
+import android.app.Application
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import ru.myapplication.randomuserapp.di.module.DatabaseModule
 import ru.myapplication.randomuserapp.di.module.NetworkModule
+import ru.myapplication.randomuserapp.di.module.RepositoryModule
 import ru.myapplication.randomuserapp.di.module.vm.ViewModelModule
 import ru.myapplication.randomuserapp.presentation.MainActivity
 import javax.inject.Singleton
@@ -12,6 +15,8 @@ import javax.inject.Singleton
 @Component(modules = [
     ViewModelModule::class,
     NetworkModule::class,
+    DatabaseModule::class,
+    RepositoryModule::class,
 ])
 interface ApplicationComponent {
 
@@ -20,7 +25,7 @@ interface ApplicationComponent {
     @Component.Factory
     interface Factory {
         fun create(
-            @BindsInstance context: Context
+            @BindsInstance application: Application
         ): ApplicationComponent
     }
 }
