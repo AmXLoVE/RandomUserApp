@@ -2,16 +2,15 @@ package ru.myapplication.randomuserapp.presentation.userlist
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ru.myapplication.randomuserapp.presentation.userlist.model.UserListUserDetail
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListModel
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
 import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListScreenContent
@@ -24,11 +23,11 @@ internal fun UserListScreen(
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
 
-    UserListScreenContent(state = state)
+    UserListScreenChoice(state = state)
 }
 
 @Composable
-private fun UserListScreenContent(
+private fun UserListScreenChoice(
     state: UserListState,
 ) {
     Scaffold { paddingValues ->
@@ -57,7 +56,7 @@ private fun UserListScreenContent(
 @Composable
 private fun UserListScreenContentLoadingPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
-        UserListScreenContent(
+        UserListScreenChoice(
             state = UserListState.Loading,
         )
     }
@@ -67,7 +66,7 @@ private fun UserListScreenContentLoadingPreview() {
 @Composable
 private fun UserListScreenContentErrorPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
-        UserListScreenContent(
+        UserListScreenChoice(
             state = UserListState.Error,
         )
     }
@@ -77,9 +76,46 @@ private fun UserListScreenContentErrorPreview() {
 @Composable
 private fun UserListScreenContentContentPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
-        ru.myapplication.randomuserapp.presentation.userlist.UserListScreenContent(
+        UserListScreenChoice(
             state = UserListState.Content(
-                userListModel = UserListModel(userList = emptyList())
+                userListModel = UserListModel(userList = listOf(
+                    UserListUserDetail(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserListUserDetail(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                    UserListUserDetail(
+                        id = 1,
+                        firstName = "Ivan",
+                        lastName = "Ivanov",
+                        gender = "male",
+                        age = 25,
+                        email = "ad@ad",
+                        phone = "123456789",
+                        picture = "",
+                        country = "RU",
+                        photoUrl = ""
+                    ),
+                ))
             ),
         )
     }

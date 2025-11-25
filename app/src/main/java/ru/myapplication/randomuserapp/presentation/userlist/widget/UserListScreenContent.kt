@@ -27,11 +27,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ru.myapplication.randomuserapp.R
-import ru.myapplication.randomuserapp.presentation.userlist.model.UserDetails
+import ru.myapplication.randomuserapp.presentation.userlist.model.UserListUserDetail
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListModel
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
 
@@ -106,8 +109,11 @@ internal fun UserListScreenContent(
                                 Text(
                                     text = state.userListModel.userList[userNumber].firstName +
                                             " " + state.userListModel.userList[userNumber].lastName,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
+
                                 )
                             }
 
@@ -118,7 +124,8 @@ internal fun UserListScreenContent(
 
                             Row() {
                                 Text(
-                                    text = state.userListModel.userList[userNumber].phone
+                                    text = state.userListModel.userList[userNumber].phone,
+                                    color = Color.Gray,
                                 )
                             }
 
@@ -141,7 +148,8 @@ internal fun UserListScreenContent(
                                         .padding(
                                             start = 4.dp
                                         ),
-                                    text = state.userListModel.userList[userNumber].country
+                                    text = state.userListModel.userList[userNumber].country,
+                                    color = Color.Gray,
                                 )
                             }
                         }
@@ -183,7 +191,7 @@ private fun UserListContentPreview() {
         state = UserListState.Content(
             userListModel = UserListModel(
                 userList = listOf(
-                    UserDetails(
+                    UserListUserDetail(
                         id = 1,
                         firstName = "Ivan",
                         lastName = "Ivanov",
@@ -195,7 +203,7 @@ private fun UserListContentPreview() {
                         country = "RU",
                         photoUrl = ""
                     ),
-                    UserDetails(
+                    UserListUserDetail(
                         id = 1,
                         firstName = "Ivan",
                         lastName = "Ivanov",
@@ -207,7 +215,7 @@ private fun UserListContentPreview() {
                         country = "RU",
                         photoUrl = ""
                     ),
-                    UserDetails(
+                    UserListUserDetail(
                         id = 1,
                         firstName = "Ivan",
                         lastName = "Ivanov",
@@ -219,7 +227,7 @@ private fun UserListContentPreview() {
                         country = "RU",
                         photoUrl = ""
                     ),
-                    UserDetails(
+                    UserListUserDetail(
                         id = 1,
                         firstName = "Ivan",
                         lastName = "Ivanov",
@@ -231,7 +239,7 @@ private fun UserListContentPreview() {
                         country = "RU",
                         photoUrl = ""
                     ),
-                    UserDetails(
+                    UserListUserDetail(
                         id = 1,
                         firstName = "Ivan",
                         lastName = "Ivanov",
@@ -243,7 +251,7 @@ private fun UserListContentPreview() {
                         country = "RU",
                         photoUrl = ""
                     ),
-                    UserDetails(
+                    UserListUserDetail(
                         id = 1,
                         firstName = "Ivan",
                         lastName = "Ivanov",
@@ -255,7 +263,7 @@ private fun UserListContentPreview() {
                         country = "RU",
                         photoUrl = ""
                     ),
-                    UserDetails(
+                    UserListUserDetail(
                         id = 1,
                         firstName = "Ivan",
                         lastName = "Ivanov",

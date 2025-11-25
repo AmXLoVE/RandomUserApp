@@ -1,6 +1,6 @@
 package ru.myapplication.randomuserapp.presentation.userlist.model
 
-internal data class UserDetails(
+internal data class UserListUserDetail(
     val id: Int,
     val firstName: String,
     val lastName: String,
