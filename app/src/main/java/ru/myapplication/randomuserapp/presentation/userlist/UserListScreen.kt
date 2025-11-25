@@ -1,7 +1,12 @@
 package ru.myapplication.randomuserapp.presentation.userlist
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -26,16 +31,25 @@ internal fun UserListScreen(
 private fun UserListScreenContent(
     state: UserListState,
 ) {
-    when (state) {
-        is UserListState.Content -> UserListScreenContent(
-            state = state,
-        )
+    Scaffold { paddingValues ->
 
-        UserListState.Error -> UserListScreenError(
-            onReloadPage = {}
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues = paddingValues)
+        ) {
+            when (state) {
+                is UserListState.Content -> UserListScreenContent(
+                    state = state,
+                )
 
-        UserListState.Loading -> UserListScreenLoading()
+                UserListState.Error -> UserListScreenError(
+                    onReloadPage = {}
+                )
+
+                UserListState.Loading -> UserListScreenLoading()
+            }
+        }
     }
 }
 

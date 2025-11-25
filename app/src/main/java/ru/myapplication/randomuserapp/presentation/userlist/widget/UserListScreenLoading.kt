@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -137,7 +138,8 @@ internal fun UserListScreenLoading() {
 
                                 Box(
                                     modifier = Modifier
-                                        .size(20.dp)
+                                        .size(23.dp)
+                                        .clip(CircleShape)
                                         .shimmerLoading()
                                 ) {}
 
