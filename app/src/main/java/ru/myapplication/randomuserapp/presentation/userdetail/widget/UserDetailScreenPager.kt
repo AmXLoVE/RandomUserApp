@@ -30,9 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
@@ -58,7 +61,7 @@ internal fun UserDetailScreenPager(
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .background(
-                brush = Brush.linearGradient(
+                brush = Brush.horizontalGradient(
                     colors = listOf(
                         Color.hsv(
                             hue = 200f,
@@ -68,13 +71,13 @@ internal fun UserDetailScreenPager(
                         ),
                         Color.hsv(
                             hue = 240f,
-                            saturation = 0.9f,
-                            value = 0.2f,
+                            saturation = 0.7f,
+                            value = 0.4f,
                             alpha = 1f,
                         ),
                     ),
                     tileMode = TileMode.Decal,
-                )
+                ),
             ),
     ) {
 

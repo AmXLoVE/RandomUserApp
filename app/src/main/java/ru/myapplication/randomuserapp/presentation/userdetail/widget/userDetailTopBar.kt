@@ -54,7 +54,7 @@ internal fun TopBar(
             .height(160.dp)
             .zIndex(0f)
             .background(
-                brush = Brush.linearGradient(
+                brush = Brush.horizontalGradient(
                     colors = listOf(
                         Color.hsv(
                             hue = 200f,
@@ -64,13 +64,13 @@ internal fun TopBar(
                         ),
                         Color.hsv(
                             hue = 240f,
-                            saturation = 0.9f,
-                            value = 0.2f,
+                            saturation = 0.7f,
+                            value = 0.4f,
                             alpha = 1f,
                         ),
                     ),
                     tileMode = TileMode.Decal,
-                )
+                ),
             ),
     ) {
 
