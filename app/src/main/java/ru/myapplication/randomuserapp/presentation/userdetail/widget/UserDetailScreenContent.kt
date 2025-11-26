@@ -89,7 +89,7 @@ internal fun UserDetailScreenContent(
                             spread = 4.dp,
                         )
                     )
-                    .clip(RoundedCornerShape(5))
+                    .clip(RoundedCornerShape(16.dp))
                     .background(
                         color = Color.White,
                     )

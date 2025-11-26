@@ -58,20 +58,20 @@ internal fun TopBar(
                     colors = listOf(
                         Color.hsv(
                             hue = 200f,
-                            saturation = 0.3f,
+                            saturation = 0.6f,
                             value = 0.8f,
                             alpha = 1f,
                         ),
                         Color.hsv(
                             hue = 240f,
-                            saturation = 0.8f,
-                            value = 0.6f,
+                            saturation = 0.9f,
+                            value = 0.2f,
                             alpha = 1f,
                         ),
                     ),
                     tileMode = TileMode.Decal,
                 )
-            )
+            ),
     ) {
 
     }

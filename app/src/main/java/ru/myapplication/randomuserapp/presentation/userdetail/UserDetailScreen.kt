@@ -96,28 +96,28 @@ private fun UserDetailScreenContentPreview() {
         UserDetailState.Content(
             UserDetailModel(
                 personalInfo = UserDetailPersonalInfo(
-                    firstName = "",
-                    lastName = "",
-                    gender = "",
-                    age = "",
-                    birthdate = "",
+                    firstName = "sdfsdf",
+                    lastName = "sdfsdf",
+                    gender = "sdfsdf",
+                    age = "sdfsdf",
+                    birthdate = "sdfsdf",
                 ),
                 UserDetailPhoneInfo(
-                    phoneNumber = "",
-                    cellNumber = "",
+                    phoneNumber = "asda",
+                    cellNumber = "asd",
                 ),
                 UserDetailEmailInfo(
-                    email = "",
-                    username = "",
+                    email = "dfbfb",
+                    username = "cvbcvb",
                 ),
                 UserDetailLocationInfo(
-                    city = "",
-                    state = "",
-                    street = "",
-                    postcode = "",
-                    coordinates = "",
+                    city = "hmnhm",
+                    state = "ghmgmh",
+                    street = "hmhmh",
+                    postcode = "hmhmhm",
+                    coordinates = "hmhmh",
                 ),
-                pictureUrl = "",
+                pictureUrl = "hmhmhm",
             )
         ),
         onPopStackBack = {},
