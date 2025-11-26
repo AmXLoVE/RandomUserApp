@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import ru.myapplication.randomuserapp.presentation.common.shimmerLoading
 
 @Composable
@@ -176,13 +182,35 @@ internal fun UserListScreenLoading() {
         }
     }
 
-    UserAddButton(
-        bgColor = Color.hsv(
-            hue = 259f,
-            saturation = .2f,
-            value = .7f,
-            alpha = 1f),
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .zIndex(1f)
+    ) {
+
+        Button(
+            modifier = Modifier
+                .align(alignment = Alignment.BottomEnd)
+                .padding(28.dp)
+                .size(50.dp)
+                .clip(RoundedCornerShape(25)),
+            shape = RoundedCornerShape(15),
+            contentPadding = PaddingValues(0.dp),
+            onClick = {},
+            enabled = false,
+        ) {
+
+            Icon(
+                imageVector = Icons.Default.Add,
+                tint = Color.White,
+                contentDescription = "",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxSize()
+                    .align(Alignment.CenterVertically)
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)

@@ -1,6 +1,7 @@
 package ru.myapplication.randomuserapp.presentation.usercreate.widget
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-internal fun TopBar() {
+internal fun TopBar(
+    onPopStackBack: () -> Unit,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -31,6 +34,9 @@ internal fun TopBar() {
                 .fillMaxHeight()
                 .padding(8.dp)
                 .padding(start = 16.dp)
+                .clickable(
+                    onClick = onPopStackBack,
+                ),
         ) {
             Icon(
                 modifier = Modifier

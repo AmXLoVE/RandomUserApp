@@ -10,8 +10,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ru.myapplication.randomuserapp.presentation.LocalNavController
+import ru.myapplication.randomuserapp.presentation.common.USER_CREATE_DEST
+import ru.myapplication.randomuserapp.presentation.common.USER_DETAIL_DEST
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListUserDetail
-import ru.myapplication.randomuserapp.presentation.userlist.model.UserListModel
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
 import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListScreenContent
 import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListScreenError
@@ -22,14 +24,26 @@ internal fun UserListScreen(
     vm: UserListViewModel,
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
+    val nav = LocalNavController.current
 
-    UserListScreenChoice(state = state)
+    UserListScreenChoice(
+        state = state,
+        onGetUserDetail = { id ->
+            nav.navigate("$USER_DETAIL_DEST/${id}")
+        },
+        onCreateUser = {
+            nav.navigate(USER_CREATE_DEST)
+        },
+    )
 }
 
 @Composable
 private fun UserListScreenChoice(
     state: UserListState,
+    onGetUserDetail: (Int) -> Unit,
+    onCreateUser: () -> Unit,
 ) {
+
     Scaffold { paddingValues ->
 
         Box(
@@ -39,7 +53,9 @@ private fun UserListScreenChoice(
         ) {
             when (state) {
                 is UserListState.Content -> UserListScreenContent(
-                    state = state,
+                    userList = state.userList,
+                    onGetUserDetail = onGetUserDetail,
+                    onCreateUser = onCreateUser,
                 )
 
                 UserListState.Error -> UserListScreenError(
@@ -58,6 +74,8 @@ private fun UserListScreenContentLoadingPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
         UserListScreenChoice(
             state = UserListState.Loading,
+            onGetUserDetail = {},
+            onCreateUser = {},
         )
     }
 }
@@ -68,6 +86,8 @@ private fun UserListScreenContentErrorPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
         UserListScreenChoice(
             state = UserListState.Error,
+            onGetUserDetail = {},
+            onCreateUser = {},
         )
     }
 }
@@ -78,45 +98,47 @@ private fun UserListScreenContentContentPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
         UserListScreenChoice(
             state = UserListState.Content(
-                userListModel = UserListModel(userList = listOf(
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                ))
+                    userList = listOf(
+                        UserListUserDetail(
+                            id = 1,
+                            firstName = "Ivan",
+                            lastName = "Ivanov",
+                            gender = "male",
+                            age = 25,
+                            email = "ad@ad",
+                            phone = "123456789",
+                            picture = "",
+                            country = "RU",
+                            photoUrl = ""
+                        ),
+                        UserListUserDetail(
+                            id = 1,
+                            firstName = "Ivan",
+                            lastName = "Ivanov",
+                            gender = "male",
+                            age = 25,
+                            email = "ad@ad",
+                            phone = "123456789",
+                            picture = "",
+                            country = "RU",
+                            photoUrl = ""
+                        ),
+                        UserListUserDetail(
+                            id = 1,
+                            firstName = "Ivan",
+                            lastName = "Ivanov",
+                            gender = "male",
+                            age = 25,
+                            email = "ad@ad",
+                            phone = "123456789",
+                            picture = "",
+                            country = "RU",
+                            photoUrl = ""
+                        ),
+                    )
             ),
+            onGetUserDetail = {},
+            onCreateUser = {},
         )
     }
 }

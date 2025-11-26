@@ -3,9 +3,11 @@ package ru.myapplication.randomuserapp.presentation.userlist.widget
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,6 +19,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,26 +33,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import ru.myapplication.randomuserapp.R
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListUserDetail
-import ru.myapplication.randomuserapp.presentation.userlist.model.UserListModel
-import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
 
 @Composable
 internal fun UserListScreenContent(
-    state: UserListState.Content,
+    userList: List<UserListUserDetail>,
+    onGetUserDetail: (Int) -> Unit,
+    onCreateUser: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
     ) {
-        items(state.userListModel.userList.size) { userNumber ->
+        items(userList.size) { userNumber ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -77,7 +83,13 @@ internal fun UserListScreenContent(
 
                 ) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .clickable(
+                                onClick = {
+                                    onGetUserDetail(userList[userNumber].id)
+                                },
+                            )
                     ) {
                         Box(
                             modifier = Modifier
@@ -107,14 +119,14 @@ internal fun UserListScreenContent(
                             Row(
                             ) {
                                 Text(
-                                    text = state.userListModel.userList[userNumber].firstName +
-                                            " " + state.userListModel.userList[userNumber].lastName,
+                                    text = userList[userNumber].firstName +
+                                            " " + userList[userNumber].lastName,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
 
-                                )
+                                    )
                             }
 
                             Spacer(
@@ -124,7 +136,7 @@ internal fun UserListScreenContent(
 
                             Row() {
                                 Text(
-                                    text = state.userListModel.userList[userNumber].phone,
+                                    text = userList[userNumber].phone,
                                     color = Color.Gray,
                                 )
                             }
@@ -148,7 +160,7 @@ internal fun UserListScreenContent(
                                         .padding(
                                             start = 4.dp
                                         ),
-                                    text = state.userListModel.userList[userNumber].country,
+                                    text = userList[userNumber].country,
                                     color = Color.Gray,
                                 )
                             }
@@ -172,7 +184,35 @@ internal fun UserListScreenContent(
         }
     }
 
-    UserAddButton()
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .zIndex(1f)
+    ) {
+
+        Button(
+            modifier = Modifier
+                .align(alignment = Alignment.BottomEnd)
+                .padding(28.dp)
+                .size(50.dp)
+                .clip(RoundedCornerShape(25)),
+            shape = RoundedCornerShape(15),
+            contentPadding = PaddingValues(0.dp),
+            onClick = onCreateUser,
+        ) {
+
+            Icon(
+                imageVector = Icons.Default.Add,
+                tint = Color.White,
+                contentDescription = "",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxSize()
+                    .align(Alignment.CenterVertically)
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
@@ -188,95 +228,93 @@ private fun UserListContentPreview() {
 //    )
 
     UserListScreenContent(
-        state = UserListState.Content(
-            userListModel = UserListModel(
-                userList = listOf(
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                    UserListUserDetail(
-                        id = 1,
-                        firstName = "Ivan",
-                        lastName = "Ivanov",
-                        gender = "male",
-                        age = 25,
-                        email = "ad@ad",
-                        phone = "123456789",
-                        picture = "",
-                        country = "RU",
-                        photoUrl = ""
-                    ),
-                )
-            )
+        userList = listOf(
+            UserListUserDetail(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                gender = "male",
+                age = 25,
+                email = "ad@ad",
+                phone = "123456789",
+                picture = "",
+                country = "RU",
+                photoUrl = ""
+            ),
+            UserListUserDetail(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                gender = "male",
+                age = 25,
+                email = "ad@ad",
+                phone = "123456789",
+                picture = "",
+                country = "RU",
+                photoUrl = ""
+            ),
+            UserListUserDetail(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                gender = "male",
+                age = 25,
+                email = "ad@ad",
+                phone = "123456789",
+                picture = "",
+                country = "RU",
+                photoUrl = ""
+            ),
+            UserListUserDetail(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                gender = "male",
+                age = 25,
+                email = "ad@ad",
+                phone = "123456789",
+                picture = "",
+                country = "RU",
+                photoUrl = ""
+            ),
+            UserListUserDetail(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                gender = "male",
+                age = 25,
+                email = "ad@ad",
+                phone = "123456789",
+                picture = "",
+                country = "RU",
+                photoUrl = ""
+            ),
+            UserListUserDetail(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                gender = "male",
+                age = 25,
+                email = "ad@ad",
+                phone = "123456789",
+                picture = "",
+                country = "RU",
+                photoUrl = ""
+            ),
+            UserListUserDetail(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                gender = "male",
+                age = 25,
+                email = "ad@ad",
+                phone = "123456789",
+                picture = "",
+                country = "RU",
+                photoUrl = ""
+            ),
         ),
+        onGetUserDetail = {},
+        onCreateUser = {},
     )
 }

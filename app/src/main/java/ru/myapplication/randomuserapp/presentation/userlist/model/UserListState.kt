@@ -7,6 +7,6 @@ internal sealed interface UserListState {
     data object Loading : UserListState
 
     data class Content(
-        val userListModel: UserListModel,
+        val userList: List<UserListUserDetail>,
     ) : UserListState
 }

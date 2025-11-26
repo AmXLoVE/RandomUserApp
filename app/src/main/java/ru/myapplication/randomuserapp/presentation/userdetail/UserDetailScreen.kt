@@ -9,6 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ru.myapplication.randomuserapp.presentation.LocalNavController
+import ru.myapplication.randomuserapp.presentation.common.USER_LIST_DEST
 import ru.myapplication.randomuserapp.presentation.userdetail.widget.TopBar
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailLocationInfo
@@ -22,16 +24,23 @@ import ru.myapplication.randomuserapp.presentation.userdetail.widget.UserDetailS
 
 @Composable
 internal fun UserDetailScreen(
+    id: Int,
     vm: UserDetailViewModel,
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
+    vm.getUserDetail(id)
+    val nav = LocalNavController.current
 
-    UserDetailScreenChoice(state)
+    UserDetailScreenChoice(
+        state = state,
+        onPopStackBack = { nav.navigate(USER_LIST_DEST) },
+    )
 }
 
 @Composable
 private fun UserDetailScreenChoice(
     state: UserDetailState,
+    onPopStackBack: () -> Unit,
 ) {
     Scaffold { paddingValues ->
 
@@ -42,7 +51,9 @@ private fun UserDetailScreenChoice(
         )
         {
 
-            TopBar()
+            TopBar(
+                onPopStackBack = onPopStackBack,
+            )
 
             when (state) {
                 is UserDetailState.Content -> UserDetailScreenContent(
@@ -64,7 +75,8 @@ private fun UserDetailScreenChoice(
 @Composable
 private fun UserDetailScreenErrorPreview() {
     UserDetailScreenChoice(
-        UserDetailState.Error
+        UserDetailState.Error,
+        onPopStackBack = {},
     )
 }
 
@@ -72,7 +84,8 @@ private fun UserDetailScreenErrorPreview() {
 @Composable
 private fun UserDetailScreenLoadingPreview() {
     UserDetailScreenChoice(
-        UserDetailState.Loading
+        UserDetailState.Loading,
+        onPopStackBack = {},
     )
 }
 
@@ -106,6 +119,7 @@ private fun UserDetailScreenContentPreview() {
                 ),
                 pictureUrl = "",
             )
-        )
+        ),
+        onPopStackBack = {},
     )
 }

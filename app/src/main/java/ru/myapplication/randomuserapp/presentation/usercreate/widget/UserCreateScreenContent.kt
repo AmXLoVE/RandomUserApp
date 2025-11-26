@@ -31,11 +31,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.myapplication.randomuserapp.presentation.LocalNavController
+import ru.myapplication.randomuserapp.presentation.common.USER_LIST_DEST
+import ru.myapplication.randomuserapp.presentation.usercreate.UserCreateViewModel
 import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateData
 
 @Composable
 internal fun UserCreateScreenContent(
     state: UserCreateData,
+    onGenerate: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -79,7 +83,7 @@ internal fun UserCreateScreenContent(
                     )
                     .align(alignment = Alignment.BottomCenter),
                 shape = RoundedCornerShape(25),
-                onClick = {},
+                onClick = onGenerate,
             ) {
                 Text(
                     text = "Generate",
@@ -191,6 +195,7 @@ private fun Preview() {
                 "United States",
                 "Australia",
             )
-        )
+        ),
+        onGenerate = {},
     )
 }
