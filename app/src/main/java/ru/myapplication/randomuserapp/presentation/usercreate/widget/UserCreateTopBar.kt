@@ -18,8 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 
 @Composable
 internal fun TopBar(
@@ -29,7 +31,6 @@ internal fun TopBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp)
-            .background(color = Color.LightGray)
     ) {
         Box(
             modifier = Modifier
@@ -47,6 +48,7 @@ internal fun TopBar(
                     .align(alignment = Alignment.Center),
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                 contentDescription = "",
+                tint = DarkBlue,
             )
         }
 
@@ -57,6 +59,8 @@ internal fun TopBar(
             Text(
                 text = "Generate User",
                 fontSize = 16.sp,
+                color = DarkBlue,
+                fontWeight = FontWeight.Medium,
             )
         }
 

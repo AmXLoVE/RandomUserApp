@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
+import ru.myapplication.randomuserapp.presentation.theme.LightBlue
 
 @Composable
 internal fun TopBar(
@@ -30,8 +32,8 @@ internal fun TopBar(
     Box(
         modifier = Modifier
             .zIndex(1f)
-            .size(70.dp)
-            .padding(16.dp)
+            .size(60.dp)
+            .padding(15.dp)
             .clip(CircleShape)
             .background(Color.White)
             .clickable(
@@ -56,18 +58,8 @@ internal fun TopBar(
             .background(
                 brush = Brush.horizontalGradient(
                     colors = listOf(
-                        Color.hsv(
-                            hue = 200f,
-                            saturation = 0.6f,
-                            value = 0.8f,
-                            alpha = 1f,
-                        ),
-                        Color.hsv(
-                            hue = 240f,
-                            saturation = 0.7f,
-                            value = 0.4f,
-                            alpha = 1f,
-                        ),
+                        LightBlue,
+                        DarkBlue,
                     ),
                     tileMode = TileMode.Decal,
                 ),

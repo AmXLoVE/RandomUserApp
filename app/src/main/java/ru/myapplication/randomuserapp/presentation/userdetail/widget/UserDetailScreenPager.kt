@@ -38,6 +38,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
+import ru.myapplication.randomuserapp.presentation.theme.LightBlue
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailLocationInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailModel
@@ -63,18 +65,8 @@ internal fun UserDetailScreenPager(
             .background(
                 brush = Brush.horizontalGradient(
                     colors = listOf(
-                        Color.hsv(
-                            hue = 200f,
-                            saturation = 0.6f,
-                            value = 0.8f,
-                            alpha = 1f,
-                        ),
-                        Color.hsv(
-                            hue = 240f,
-                            saturation = 0.7f,
-                            value = 0.4f,
-                            alpha = 1f,
-                        ),
+                        LightBlue,
+                        DarkBlue,
                     ),
                     tileMode = TileMode.Decal,
                 ),
@@ -239,20 +231,23 @@ fun TabContent(
 
         Text(
             text = title,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             fontSize = 14.sp,
+            color = DarkBlue,
         )
 
         Text(
             text = ":",
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             fontSize = 14.sp,
+            color = DarkBlue,
         )
 
         Text(
             text = text,
             fontWeight = FontWeight.Normal,
             fontSize = 14.sp,
+            color = DarkBlue,
         )
     }
 }

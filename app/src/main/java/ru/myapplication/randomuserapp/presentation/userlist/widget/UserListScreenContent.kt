@@ -21,7 +21,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import ru.myapplication.randomuserapp.R
+import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListUserDetail
 
 @Composable
@@ -62,23 +66,19 @@ internal fun UserListScreenContent(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(6.dp)
+                        .padding(8.dp)
+                        .padding(horizontal = 4.dp)
                         .dropShadow(
-                            shape = RoundedCornerShape(15),
+                            shape = RoundedCornerShape(12.dp),
                             shadow = Shadow(
-                                spread = 1.dp,
-                                radius = 32.dp,
+                                spread = 4.dp,
+                                radius = 6.dp,
                                 color = Color.LightGray,
                             )
                         )
-                        .clip(RoundedCornerShape(15))
+                        .clip(RoundedCornerShape(12.dp))
                         .background(
                             color = Color.White,
-                        )
-                        .border(
-                            width = 2.dp,
-                            color = Color.LightGray,
-                            shape = RoundedCornerShape(15)
                         )
 
                 ) {
@@ -95,7 +95,7 @@ internal fun UserListScreenContent(
                             modifier = Modifier
                                 .width(120.dp)
                                 .padding(8.dp)
-                                .clip(RoundedCornerShape(15)),
+                                .clip(RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
@@ -111,7 +111,7 @@ internal fun UserListScreenContent(
                             modifier = Modifier
                                 .padding(
                                     start = 8.dp,
-                                    end = 8.dp
+                                    end = 4.dp
                                 )
                                 .weight(1f)
                         ) {
@@ -122,10 +122,10 @@ internal fun UserListScreenContent(
                                     text = userList[userNumber].firstName +
                                             " " + userList[userNumber].lastName,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 16.sp,
+                                    fontSize = 18.sp,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
-
+                                    color = DarkBlue,
                                     )
                             }
 
@@ -170,12 +170,13 @@ internal fun UserListScreenContent(
                             modifier = Modifier
                                 .align(alignment = Alignment.Top)
                         ) {
-                            Image(
-                                painter = painterResource(R.drawable.ic_launcher_background),
+                            Icon(
+                                imageVector = Icons.Default.MoreVert,
                                 contentDescription = "",
                                 modifier = Modifier
                                     .padding(12.dp)
-                                    .size(20.dp),
+                                    .size(25.dp),
+                                tint = DarkBlue
                             )
                         }
                     }
@@ -200,6 +201,10 @@ internal fun UserListScreenContent(
             shape = RoundedCornerShape(15),
             contentPadding = PaddingValues(0.dp),
             onClick = onCreateUser,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = DarkBlue,
+                contentColor = Color.White,
+            )
         ) {
 
             Icon(
@@ -265,54 +270,54 @@ private fun UserListContentPreview() {
                 country = "RU",
                 photoUrl = ""
             ),
-            UserListUserDetail(
-                id = 1,
-                firstName = "Ivan",
-                lastName = "Ivanov",
-                gender = "male",
-                age = 25,
-                email = "ad@ad",
-                phone = "123456789",
-                picture = "",
-                country = "RU",
-                photoUrl = ""
-            ),
-            UserListUserDetail(
-                id = 1,
-                firstName = "Ivan",
-                lastName = "Ivanov",
-                gender = "male",
-                age = 25,
-                email = "ad@ad",
-                phone = "123456789",
-                picture = "",
-                country = "RU",
-                photoUrl = ""
-            ),
-            UserListUserDetail(
-                id = 1,
-                firstName = "Ivan",
-                lastName = "Ivanov",
-                gender = "male",
-                age = 25,
-                email = "ad@ad",
-                phone = "123456789",
-                picture = "",
-                country = "RU",
-                photoUrl = ""
-            ),
-            UserListUserDetail(
-                id = 1,
-                firstName = "Ivan",
-                lastName = "Ivanov",
-                gender = "male",
-                age = 25,
-                email = "ad@ad",
-                phone = "123456789",
-                picture = "",
-                country = "RU",
-                photoUrl = ""
-            ),
+//            UserListUserDetail(
+//                id = 1,
+//                firstName = "Ivan",
+//                lastName = "Ivanov",
+//                gender = "male",
+//                age = 25,
+//                email = "ad@ad",
+//                phone = "123456789",
+//                picture = "",
+//                country = "RU",
+//                photoUrl = ""
+//            ),
+//            UserListUserDetail(
+//                id = 1,
+//                firstName = "Ivan",
+//                lastName = "Ivanov",
+//                gender = "male",
+//                age = 25,
+//                email = "ad@ad",
+//                phone = "123456789",
+//                picture = "",
+//                country = "RU",
+//                photoUrl = ""
+//            ),
+//            UserListUserDetail(
+//                id = 1,
+//                firstName = "Ivan",
+//                lastName = "Ivanov",
+//                gender = "male",
+//                age = 25,
+//                email = "ad@ad",
+//                phone = "123456789",
+//                picture = "",
+//                country = "RU",
+//                photoUrl = ""
+//            ),
+//            UserListUserDetail(
+//                id = 1,
+//                firstName = "Ivan",
+//                lastName = "Ivanov",
+//                gender = "male",
+//                age = 25,
+//                email = "ad@ad",
+//                phone = "123456789",
+//                picture = "",
+//                country = "RU",
+//                photoUrl = ""
+//            ),
         ),
         onGetUserDetail = {},
         onCreateUser = {},

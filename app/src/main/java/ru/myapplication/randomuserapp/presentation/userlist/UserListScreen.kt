@@ -1,5 +1,6 @@
 package ru.myapplication.randomuserapp.presentation.userlist
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import ru.myapplication.randomuserapp.presentation.LocalNavController
 import ru.myapplication.randomuserapp.presentation.common.USER_CREATE_DEST
 import ru.myapplication.randomuserapp.presentation.common.USER_DETAIL_DEST
+import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListUserDetail
 import ru.myapplication.randomuserapp.presentation.userlist.widget.UserListScreenContent

@@ -14,6 +14,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -27,12 +28,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.myapplication.randomuserapp.presentation.LocalNavController
 import ru.myapplication.randomuserapp.presentation.common.USER_LIST_DEST
+import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 import ru.myapplication.randomuserapp.presentation.usercreate.UserCreateViewModel
 import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateData
 
@@ -77,17 +80,23 @@ internal fun UserCreateScreenContent(
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(70.dp)
                     .padding(
                         horizontal = 16.dp,
                         vertical = 10.dp,
                     )
                     .align(alignment = Alignment.BottomCenter),
                 shape = RoundedCornerShape(25),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = DarkBlue,
+                    contentColor = Color.White,
+                ),
                 onClick = onGenerate,
             ) {
                 Text(
-                    text = "Generate",
+                    text = "GENERATE",
                     fontSize = 16.sp,
+                    fontWeight = FontWeight.Light,
                 )
             }
         }
@@ -175,9 +184,9 @@ private fun arrowIconOpening(
     expanded: Boolean,
 ): ImageVector {
     return if (expanded) {
-        Icons.Default.KeyboardArrowDown
-    } else {
         Icons.AutoMirrored.Filled.KeyboardArrowRight
+    } else {
+        Icons.Default.KeyboardArrowDown
     }
 }
 

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -50,34 +51,30 @@ internal fun UserListScreenLoading() {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(6.dp)
+                        .padding(8.dp)
+                        .padding(horizontal = 4.dp)
                         .dropShadow(
-                            shape = RoundedCornerShape(15),
+                            shape = RoundedCornerShape(12.dp),
                             shadow = Shadow(
                                 spread = 1.dp,
                                 radius = 32.dp,
                                 color = Color.LightGray,
                             )
                         )
-                        .clip(RoundedCornerShape(15))
+                        .clip(RoundedCornerShape(12.dp))
                         .background(
                             color = Color.White,
                         )
-                        .border(
-                            width = 2.dp,
-                            color = Color.LightGray,
-                            shape = RoundedCornerShape(15)
-                        )
-
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(130.dp)
+                                .fillMaxHeight()
+                                .size(120.dp)
                                 .padding(8.dp)
-                                .clip(RoundedCornerShape(15))
+                                .clip(RoundedCornerShape(12.dp))
                                 .shimmerLoading(),
                             contentAlignment = Alignment.Center
                         ) {}
@@ -95,7 +92,7 @@ internal fun UserListScreenLoading() {
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .height(15.dp)
+                                        .height(16.dp)
                                         .width(60.dp)
                                         .clip(RoundedCornerShape(25))
                                         .shimmerLoading(),
@@ -109,7 +106,7 @@ internal fun UserListScreenLoading() {
 
                                 Box(
                                     modifier = Modifier
-                                        .height(18.dp)
+                                        .height(16.dp)
                                         .width(100.dp)
                                         .clip(RoundedCornerShape(25))
                                         .shimmerLoading(),
@@ -125,7 +122,7 @@ internal fun UserListScreenLoading() {
                             Row() {
                                 Box(
                                     modifier = Modifier
-                                        .height(15.dp)
+                                        .height(16.dp)
                                         .width(90.dp)
                                         .clip(RoundedCornerShape(25))
                                         .shimmerLoading(),
@@ -156,7 +153,7 @@ internal fun UserListScreenLoading() {
 
                                 Box(
                                     modifier = Modifier
-                                        .height(15.dp)
+                                        .height(16.dp)
                                         .width(30.dp)
                                         .clip(RoundedCornerShape(25))
                                         .shimmerLoading(),
@@ -172,7 +169,7 @@ internal fun UserListScreenLoading() {
                             Box(
                                 modifier = Modifier
                                     .padding(12.dp)
-                                    .size(20.dp)
+                                    .size(25.dp)
                                     .shimmerLoading(),
                             )
                         }

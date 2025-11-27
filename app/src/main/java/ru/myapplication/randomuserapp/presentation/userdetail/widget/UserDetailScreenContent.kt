@@ -21,9 +21,12 @@ import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ru.myapplication.randomuserapp.R
+import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailLocationInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailModel
@@ -71,6 +74,9 @@ internal fun UserDetailScreenContent(
                 modifier = Modifier
                     .padding(4.dp),
                 text = userDetails.personalInfo.firstName + " " + userDetails.personalInfo.lastName,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
+                color = DarkBlue,
             )
 
             Box(
