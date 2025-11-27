@@ -39,13 +39,13 @@ import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 import ru.myapplication.randomuserapp.presentation.theme.LightBlue
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailLocationInfo
-import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailModel
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPersonalInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPhoneInfo
+import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailState
 
 @Composable
 internal fun UserDetailScreenPager(
-    userDetails: UserDetailModel,
+    state: UserDetailState.Content,
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
 
@@ -61,10 +61,7 @@ internal fun UserDetailScreenPager(
             .clip(RoundedCornerShape(12.dp))
             .background(
                 brush = Brush.horizontalGradient(
-                    colors = listOf(
-                        LightBlue,
-                        DarkBlue,
-                    ),
+                    colors = listOf(LightBlue, DarkBlue),
                     tileMode = TileMode.Decal,
                 ),
             ),
@@ -92,18 +89,12 @@ internal fun UserDetailScreenPager(
                             else
                                 Color.White
                     ),
-                    shape = RoundedCornerShape(
-                        topStart = 16.dp,
-                        topEnd = 16.dp
-                    ),
-                    onClick = {
-                        selectedTab = index
-                    },
+                    shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+                    onClick = { selectedTab = index },
                 ) {
                     Icon(
                         imageVector = title,
                         contentDescription = "",
-
                     )
                 }
             }
@@ -117,16 +108,12 @@ internal fun UserDetailScreenPager(
                     shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
                 )
         ) {
-            Column(
-                modifier = Modifier
-                    .padding(16.dp)
-            ) {
-
+            Column(modifier = Modifier.padding(16.dp)) {
                 when (selectedTab) {
-                    0 -> PersonalInfoTabContent( personalInfo = userDetails.personalInfo)
-                    1 -> PhoneInfoTabContent(phoneInfo = userDetails.phoneInfo)
-                    2 -> EmailInfoTabContent(emailInfo = userDetails.emailInfo)
-                    3 -> LocationInfoTabContent(locationInfo = userDetails.locationInfo)
+                    0 -> PersonalInfoTabContent( personalInfo = state.personalInfo)
+                    1 -> PhoneInfoTabContent(phoneInfo = state.phoneInfo)
+                    2 -> EmailInfoTabContent(emailInfo = state.emailInfo)
+                    3 -> LocationInfoTabContent(locationInfo = state.locationInfo)
                 }
             }
         }
@@ -253,7 +240,7 @@ fun TabContent(
 @Composable
 private fun UserDetailScreenPagerPreview() {
     UserDetailScreenPager(
-        userDetails = UserDetailModel(
+        state = UserDetailState.Content(
             personalInfo = UserDetailPersonalInfo(
                 firstName = "John",
                 lastName = "Doe",

@@ -20,4 +20,7 @@ internal interface UserListDao {
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<UserEntity>)
+
+    @Query("SELECT * FROM userentity WHERE id = :id")
+    suspend fun getUserById(id: Long): UserEntity?
 }

@@ -1,11 +1,13 @@
 package ru.myapplication.randomuserapp.domain.userlist.model
 
+import ru.myapplication.randomuserapp.domain.usercreate.GenderDomain
 import java.util.Date
 
-data class UserDomain(
+internal data class UserDomain(
     val id: Long,
     val phone: String,
-    val gender: UserGenderDomain,
+    val cellNumber: String,
+    val gender: GenderDomain,
     val email: String,
     val nat: String,
     val name: UserNameInfoDomain,
@@ -15,38 +17,35 @@ data class UserDomain(
     val picture: UserPictureInfoDomain,
 )
 
-data class UserPictureInfoDomain(
+internal data class UserPictureInfoDomain(
     val large: String,
     val medium: String,
     val thumbnail: String,
 )
 
-data class UserNameInfoDomain(
+internal data class UserNameInfoDomain(
     val title: String,
     val firstName: String,
     val lastName: String,
 )
 
-data class UserLocationInfoDomain(
+internal data class UserLocationInfoDomain(
     val street: String,
     val city: String,
     val state: String,
     val country: String,
     val postcode: String,
+    val coordinates: String,
 )
 
-data class UserBirthdayInfoDomain(
+internal data class UserBirthdayInfoDomain(
     val age: Int,
     val date: Date,
 )
 
-data class UserLoginInfoDomain(
+internal data class UserLoginInfoDomain(
     val uuid: String,
     val username: String,
     val password: String,
     val salt: String,
 )
-
-enum class UserGenderDomain {
-    MALE, FEMALE
-}

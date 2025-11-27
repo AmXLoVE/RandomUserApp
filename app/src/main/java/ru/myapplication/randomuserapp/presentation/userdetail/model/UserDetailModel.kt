@@ -1,13 +1,5 @@
 package ru.myapplication.randomuserapp.presentation.userdetail.model
 
-internal data class UserDetailModel(
-    val personalInfo: UserDetailPersonalInfo,
-    val phoneInfo: UserDetailPhoneInfo,
-    val emailInfo: UserDetailEmailInfo,
-    val locationInfo: UserDetailLocationInfo,
-    val pictureUrl: String,
-)
-
 internal data class UserDetailPersonalInfo(
     val firstName: String,
     val lastName: String,

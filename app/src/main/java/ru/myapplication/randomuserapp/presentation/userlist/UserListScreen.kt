@@ -88,7 +88,6 @@ private fun UserListScreenChoice(
                     )
                 }
 
-
                 state.apply {
                     when {
                         loadState.refresh is LoadState.Loading -> items(3) { UserListItemShimmer() }

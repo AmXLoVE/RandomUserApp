@@ -26,7 +26,6 @@ internal class UserListViewModel @Inject constructor(
     private val _state: MutableStateFlow<PagingData<UserDomain>> = MutableStateFlow(PagingData.empty())
     val state: Flow<PagingData<UserDomain>> = _state.cachedIn(viewModelScope)
 
-
     fun init(args: UserListArgs) {
         userListRepository
             .loadWithPagination(

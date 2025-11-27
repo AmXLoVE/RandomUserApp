@@ -1,6 +1,5 @@
 package ru.myapplication.randomuserapp.presentation.userdetail.widget
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,20 +20,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import ru.myapplication.randomuserapp.R
 import ru.myapplication.randomuserapp.presentation.common.shimmerLoading
-import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailModel
 
 @Composable
 internal fun UserDetailScreenLoading() {
     Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
         Box(
             modifier = Modifier
                 .offset(y = 95.dp)
@@ -42,24 +36,21 @@ internal fun UserDetailScreenLoading() {
                 .clip(CircleShape)
                 .background(color = Color.White)
                 .shimmerLoading(),
-            )
+        )
 
         Column(
-            modifier = Modifier
-                .offset(y = 110.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.offset(y = 110.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
             Text(
-                modifier = Modifier
-                    .padding(4.dp),
+                modifier = Modifier.padding(4.dp),
                 text = "Hi how are you today?",
                 color = Color.Gray,
             )
 
             Text(
-                modifier = Modifier
-                    .padding(4.dp),
+                modifier = Modifier.padding(4.dp),
                 text = "I'm",
                 color = Color.Gray,
             )
@@ -71,7 +62,7 @@ internal fun UserDetailScreenLoading() {
                         width = 140.dp,
                         height = 20.dp,
                     )
-                    .shimmerLoading()
+                    .shimmerLoading(),
             )
 
             Box(
@@ -91,19 +82,10 @@ internal fun UserDetailScreenLoading() {
                         )
                     )
                     .clip(RoundedCornerShape(5))
-                    .background(
-                        color = Color.White,
-                    )
+                    .background(color = Color.White),
             ) {
-                Column(
-                    modifier = Modifier
-                        .padding(8.dp),
-                ) {
-
-                    Spacer(
-                        modifier = Modifier
-                            .height(12.dp),
-                    )
+                Column(modifier = Modifier.padding(8.dp)) {
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     Box(
                         modifier = Modifier
@@ -122,7 +104,7 @@ internal fun UserDetailScreenLoading() {
                                 width = 140.dp,
                                 height = 20.dp,
                             )
-                            .shimmerLoading()
+                            .shimmerLoading(),
                     )
 
                     Box(
@@ -132,7 +114,7 @@ internal fun UserDetailScreenLoading() {
                                 width = 140.dp,
                                 height = 20.dp,
                             )
-                            .shimmerLoading()
+                            .shimmerLoading(),
                     )
                 }
             }

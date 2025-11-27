@@ -5,21 +5,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ru.myapplication.randomuserapp.presentation.LocalNavController
-import ru.myapplication.randomuserapp.presentation.common.USER_LIST_DEST
-import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailArgs
-import ru.myapplication.randomuserapp.presentation.userdetail.widget.TopBar
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailLocationInfo
-import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailModel
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPersonalInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPhoneInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailState
+import ru.myapplication.randomuserapp.presentation.userdetail.widget.TopBar
 import ru.myapplication.randomuserapp.presentation.userdetail.widget.UserDetailScreenContent
 import ru.myapplication.randomuserapp.presentation.userdetail.widget.UserDetailScreenError
 import ru.myapplication.randomuserapp.presentation.userdetail.widget.UserDetailScreenLoading
@@ -33,6 +29,7 @@ internal fun UserDetailScreen(
 
     UserDetailScreenChoice(
         state = state,
+        onReloadClick = vm::onReloadClick,
         onPopStackBack = { nav.popBackStack() },
     )
 }
@@ -40,29 +37,23 @@ internal fun UserDetailScreen(
 @Composable
 private fun UserDetailScreenChoice(
     state: UserDetailState,
+    onReloadClick: () -> Unit,
     onPopStackBack: () -> Unit,
 ) {
     Scaffold { paddingValues ->
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues = paddingValues)
-        )
-        {
-
+                .padding(paddingValues = paddingValues),
+        ) {
             TopBar(
                 onPopStackBack = onPopStackBack,
             )
 
             when (state) {
-                is UserDetailState.Content -> UserDetailScreenContent(
-                    userDetails = state.userDetails,
-                )
+                is UserDetailState.Content -> UserDetailScreenContent(state = state)
 
-                UserDetailState.Error -> UserDetailScreenError(
-                    onReloadPage = {},
-                )
+                UserDetailState.Error -> UserDetailScreenError(onReloadPage = onReloadClick)
 
                 UserDetailState.Loading -> UserDetailScreenLoading()
             }
@@ -75,7 +66,8 @@ private fun UserDetailScreenChoice(
 @Composable
 private fun UserDetailScreenErrorPreview() {
     UserDetailScreenChoice(
-        UserDetailState.Error,
+        state = UserDetailState.Error,
+        onReloadClick = {},
         onPopStackBack = {},
     )
 }
@@ -84,7 +76,8 @@ private fun UserDetailScreenErrorPreview() {
 @Composable
 private fun UserDetailScreenLoadingPreview() {
     UserDetailScreenChoice(
-        UserDetailState.Loading,
+        state = UserDetailState.Loading,
+        onReloadClick = {},
         onPopStackBack = {},
     )
 }
@@ -93,33 +86,32 @@ private fun UserDetailScreenLoadingPreview() {
 @Composable
 private fun UserDetailScreenContentPreview() {
     UserDetailScreenChoice(
-        UserDetailState.Content(
-            UserDetailModel(
-                personalInfo = UserDetailPersonalInfo(
-                    firstName = "sdfsdf",
-                    lastName = "sdfsdf",
-                    gender = "sdfsdf",
-                    age = "sdfsdf",
-                    birthdate = "sdfsdf",
-                ),
-                UserDetailPhoneInfo(
-                    phoneNumber = "asda",
-                    cellNumber = "asd",
-                ),
-                UserDetailEmailInfo(
-                    email = "dfbfb",
-                    username = "cvbcvb",
-                ),
-                UserDetailLocationInfo(
-                    city = "hmnhm",
-                    state = "ghmgmh",
-                    street = "hmhmh",
-                    postcode = "hmhmhm",
-                    coordinates = "hmhmh",
-                ),
-                pictureUrl = "hmhmhm",
-            )
+        state = UserDetailState.Content(
+            personalInfo = UserDetailPersonalInfo(
+                firstName = "sdfsdf",
+                lastName = "sdfsdf",
+                gender = "sdfsdf",
+                age = "sdfsdf",
+                birthdate = "sdfsdf",
+            ),
+            UserDetailPhoneInfo(
+                phoneNumber = "asda",
+                cellNumber = "asd",
+            ),
+            UserDetailEmailInfo(
+                email = "dfbfb",
+                username = "cvbcvb",
+            ),
+            UserDetailLocationInfo(
+                city = "hmnhm",
+                state = "ghmgmh",
+                street = "hmhmh",
+                postcode = "hmhmhm",
+                coordinates = "hmhmh",
+            ),
+            pictureUrl = "hmhmhm",
         ),
+        onReloadClick = {},
         onPopStackBack = {},
     )
 }

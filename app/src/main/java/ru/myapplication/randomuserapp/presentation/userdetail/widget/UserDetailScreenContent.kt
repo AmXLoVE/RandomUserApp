@@ -29,17 +29,16 @@ import ru.myapplication.randomuserapp.R
 import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailLocationInfo
-import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailModel
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPersonalInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPhoneInfo
+import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailState
 
 @Composable
 internal fun UserDetailScreenContent(
-    userDetails: UserDetailModel,
+    state: UserDetailState.Content,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
@@ -49,31 +48,26 @@ internal fun UserDetailScreenContent(
                 .offset(y = 95.dp)
                 .size(130.dp)
                 .clip(CircleShape),
-
             )
 
         Column(
-            modifier = Modifier
-                .offset(y = 110.dp),
+            modifier = Modifier.offset(y = 110.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Text(
-                modifier = Modifier
-                    .padding(4.dp),
+                modifier = Modifier.padding(4.dp),
                 text = "Hi how are you today?",
                 color = Color.Gray,
             )
             Text(
-                modifier = Modifier
-                    .padding(4.dp),
+                modifier = Modifier.padding(4.dp),
                 text = "I'm",
                 color = Color.Gray,
             )
             Text(
-                modifier = Modifier
-                    .padding(4.dp),
-                text = userDetails.personalInfo.firstName + " " + userDetails.personalInfo.lastName,
+                modifier = Modifier.padding(4.dp),
+                text = state.personalInfo.firstName + " " + state.personalInfo.lastName,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 color = DarkBlue,
@@ -96,14 +90,9 @@ internal fun UserDetailScreenContent(
                         )
                     )
                     .clip(RoundedCornerShape(16.dp))
-                    .background(
-                        color = Color.White,
-                    )
+                    .background(color = Color.White)
             ) {
-
-                UserDetailScreenPager(
-                    userDetails = userDetails,
-                )
+                UserDetailScreenPager(state = state)
             }
         }
     }
@@ -113,7 +102,7 @@ internal fun UserDetailScreenContent(
 @Composable
 private fun UserDetailScreenContentPreview() {
     UserDetailScreenContent(
-        userDetails = UserDetailModel(
+        state = UserDetailState.Content(
             personalInfo = UserDetailPersonalInfo(
                 firstName = "AJDK",
                 lastName = "asdasd",

@@ -7,6 +7,10 @@ internal sealed interface UserDetailState {
     data object Loading : UserDetailState
 
     data class Content(
-        val userDetails: UserDetailModel,
+        val personalInfo: UserDetailPersonalInfo,
+        val phoneInfo: UserDetailPhoneInfo,
+        val emailInfo: UserDetailEmailInfo,
+        val locationInfo: UserDetailLocationInfo,
+        val pictureUrl: String,
     ) : UserDetailState
 }

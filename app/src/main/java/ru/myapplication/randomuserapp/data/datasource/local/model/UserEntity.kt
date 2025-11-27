@@ -11,6 +11,7 @@ internal data class UserEntity(
     val id: Long = 0,
     val uuid: String,
     val phone: String,
+    val cellNumber: String,
     val gender: String,
     val email: String,
     val nat: String,
@@ -40,6 +41,7 @@ data class UserLocationInfoEntity(
     val state: String,
     val country: String,
     val postcode: String,
+    val coordinates: String,
 )
 
 data class UserBirthdayInfoEntity(

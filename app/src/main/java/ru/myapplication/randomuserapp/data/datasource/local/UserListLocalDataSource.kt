@@ -17,4 +17,6 @@ internal class UserListLocalDataSource @Inject constructor(
         gender = params.gender,
         nat = params.nat,
     )
+
+    suspend fun getUserById(id: Long) = userListDao.getUserById(id = id)
 }

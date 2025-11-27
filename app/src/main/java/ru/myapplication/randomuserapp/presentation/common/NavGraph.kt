@@ -27,7 +27,6 @@ internal fun NavGraph() {
     ) {
         composable<UserListArgs> { entry ->
             val userListViewModel = daggerViewModel<UserListViewModel>(viewModelStoreOwner = entry) {
-                Log.i("asdfasdf", "inited")
                 it.init(entry.toRoute())
             }
 

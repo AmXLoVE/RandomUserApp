@@ -21,6 +21,12 @@ internal class UserListRepositoryImpl @Inject constructor(
     private val userListLocalDataSource: UserListLocalDataSource,
 ) : UserListRepository {
 
+    override suspend fun getUserById(id: Long): UserDomain {
+        val userEntity = userListLocalDataSource.getUserById(id = id) ?: error("")
+
+        return userEntity.toDomain()
+    }
+
     @OptIn(ExperimentalPagingApi::class)
     override fun loadWithPagination(params: UpdateUserListParams): Flow<PagingData<UserDomain>> =
         Pager(
