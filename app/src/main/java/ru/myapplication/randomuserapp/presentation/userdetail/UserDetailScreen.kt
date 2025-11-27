@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,7 +29,11 @@ internal fun UserDetailScreen(
     vm: UserDetailViewModel,
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
-    vm.getUserDetail(id)
+
+    LaunchedEffect(id) {
+        vm.getUserDetail(id)
+    }
+
     val nav = LocalNavController.current
 
     UserDetailScreenChoice(

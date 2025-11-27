@@ -33,10 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ru.myapplication.randomuserapp.presentation.LocalNavController
-import ru.myapplication.randomuserapp.presentation.common.USER_LIST_DEST
 import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
-import ru.myapplication.randomuserapp.presentation.usercreate.UserCreateViewModel
 import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateData
 
 @Composable
