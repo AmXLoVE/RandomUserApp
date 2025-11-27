@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import coil.compose.AsyncImage
 import ru.myapplication.randomuserapp.R
 import ru.myapplication.randomuserapp.domain.userlist.model.UserDomain
 import ru.myapplication.randomuserapp.presentation.LocalNavController
@@ -81,7 +82,8 @@ private fun UserListScreenChoice(
                         firstName = state[index]?.name?.firstName ?: "",
                         lastName = state[index]?.name?.firstName ?: "",
                         phone = state[index]?.phone ?: "",
-                        country = state[index]?.location?.country ?: "",
+                        nat = state[index]?.nat ?: "",
+                        pictureUrl = state[index]?.picture?.medium ?: "",
                         onClick = { state[index]?.id?.let { onItemClick(it) } },
                     )
                 }
@@ -134,7 +136,8 @@ private fun UserListItemWidget(
     firstName: String,
     lastName: String,
     phone: String,
-    country: String,
+    nat: String,
+    pictureUrl: String,
     onClick: () -> Unit,
 ) {
     Row(
@@ -171,8 +174,8 @@ private fun UserListItemWidget(
                         .clip(RoundedCornerShape(12.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_launcher_background),
+                    AsyncImage(
+                        model = pictureUrl,
                         contentDescription = "",
                         modifier = Modifier
                             .fillMaxHeight(),
@@ -217,7 +220,7 @@ private fun UserListItemWidget(
 
                         Text(
                             modifier = Modifier.padding(start = 4.dp),
-                            text = country,
+                            text = nat,
                             color = Color.Gray,
                         )
                     }
