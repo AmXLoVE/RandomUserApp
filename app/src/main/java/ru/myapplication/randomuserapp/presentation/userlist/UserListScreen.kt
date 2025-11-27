@@ -44,6 +44,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import ru.myapplication.randomuserapp.R
+import ru.myapplication.randomuserapp.domain.usercreate.NationalityDomain
 import ru.myapplication.randomuserapp.domain.userlist.model.UserDomain
 import ru.myapplication.randomuserapp.presentation.LocalNavController
 import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
@@ -211,7 +212,8 @@ private fun UserListItemWidget(
 
                     Row {
                         Image(
-                            painter = painterResource(R.drawable.ic_launcher_background),
+                            painter = painterResource(
+                                getNatImage(nationality = NationalityDomain.valueOf(value = nat))),
                             contentDescription = "",
                             modifier = Modifier
                                 .size(18.dp)
@@ -237,5 +239,31 @@ private fun UserListItemWidget(
                 }
             }
         }
+    }
+}
+
+private fun getNatImage(nationality: NationalityDomain) : Int {
+    return when(nationality) {
+        NationalityDomain.AU -> R.drawable.australia
+        NationalityDomain.BR -> R.drawable.brazil
+        NationalityDomain.CA -> R.drawable.canada
+        NationalityDomain.CH -> R.drawable.switzerland
+        NationalityDomain.DE -> R.drawable.germany
+        NationalityDomain.DK -> R.drawable.denmark
+        NationalityDomain.ES -> R.drawable.spain
+        NationalityDomain.FI -> R.drawable.finland
+        NationalityDomain.FR -> R.drawable.france
+        NationalityDomain.GB -> R.drawable.united_kingdom
+        NationalityDomain.IE -> R.drawable.ireland
+        NationalityDomain.IN -> R.drawable.india
+        NationalityDomain.IR -> R.drawable.iran
+        NationalityDomain.MX -> R.drawable.mexico
+        NationalityDomain.NL -> R.drawable.netherlands
+        NationalityDomain.NO -> R.drawable.norway
+        NationalityDomain.NZ -> R.drawable.new_zealand
+        NationalityDomain.RS -> R.drawable.serbia
+        NationalityDomain.TR -> R.drawable.turkey
+        NationalityDomain.UA -> R.drawable.ukraine
+        NationalityDomain.US -> R.drawable.united_states
     }
 }

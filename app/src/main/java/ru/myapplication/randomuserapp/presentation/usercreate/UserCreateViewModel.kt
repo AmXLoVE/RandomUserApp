@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.myapplication.randomuserapp.domain.usercreate.GetGendersUseCase
 import ru.myapplication.randomuserapp.domain.usercreate.GetNationalityUseCase
+import ru.myapplication.randomuserapp.domain.userlist.UserListRepository
 import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateState
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListArgs
 import javax.inject.Inject
@@ -17,6 +18,7 @@ import javax.inject.Inject
 internal class UserCreateViewModel @Inject constructor(
     private val getGendersUseCase: GetGendersUseCase,
     private val getNationalityUseCase: GetNationalityUseCase,
+    private val repository: UserListRepository,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<UserCreateState> =
@@ -31,8 +33,8 @@ internal class UserCreateViewModel @Inject constructor(
 
             _state.update {
                 UserCreateState.Content(
-                    selectedGender = genders.first().value,
-                    selectedNationality = nationality.first().value,
+                    selectedGender = repository.getSavedGender() ?: genders.first().value,
+                    selectedNationality = repository.getSavedNationality() ?: nationality.first().value,
                     genders = genders.map { it.value },
                     nationality = nationality.map { it.value },
                 )
@@ -43,11 +45,15 @@ internal class UserCreateViewModel @Inject constructor(
     fun onGenderSelected(item: String) {
         val currentState = (_state.value as? UserCreateState.Content) ?: return
 
+        repository.saveGender(item)
+
         _state.update { currentState.copy(selectedGender = item) }
     }
 
     fun onNationalitySelected(item: String) {
         val currentState = (_state.value as? UserCreateState.Content) ?: return
+
+        repository.saveNationality(item)
 
         _state.update { currentState.copy(selectedNationality = item) }
     }

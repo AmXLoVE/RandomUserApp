@@ -10,4 +10,12 @@ internal interface UserListRepository {
     suspend fun getUserById(id: Long): UserDomain
 
     fun loadWithPagination(params: UpdateUserListParams): Flow<PagingData<UserDomain>>
+
+    fun getSavedGender(): String?
+
+    fun getSavedNationality(): String?
+
+    fun saveGender(gender: String)
+
+    fun saveNationality(nationality: String)
 }

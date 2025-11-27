@@ -45,4 +45,13 @@ internal class UserListRepositoryImpl @Inject constructor(
             .map { pagingData ->
                 pagingData.map { entity -> entity.toDomain() }
             }
+
+    override fun getSavedGender(): String? = userListLocalDataSource.getGender()
+
+    override fun getSavedNationality(): String? = userListLocalDataSource.getNationality()
+
+    override fun saveGender(gender: String) = userListLocalDataSource.saveGender(gender)
+
+    override fun saveNationality(nationality: String) =
+        userListLocalDataSource.saveNationality(nationality)
 }
