@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import ru.myapplication.randomuserapp.R
 import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
@@ -41,8 +42,8 @@ internal fun UserDetailScreenContent(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(R.drawable.ic_launcher_background),
+        AsyncImage(
+            model = state.pictureUrl,
             contentDescription = null,
             modifier = Modifier
                 .offset(y = 95.dp)
