@@ -1,17 +1,23 @@
 package ru.myapplication.randomuserapp.data.datasource.local
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
+import androidx.room.Transaction
 import ru.myapplication.randomuserapp.data.datasource.local.model.UserEntity
 
 @Dao
 internal interface UserListDao {
 
-    @Query("SELECT * FROM userentity")
-    fun getAll(): Flow<List<UserEntity>>
+    @Query("SELECT * FROM userentity WHERE (:gender IS NULL OR gender = :gender) AND (:nat IS NULL OR nat = :nat) ORDER by id ASC")
+    fun pagingSource(
+        gender: String?,
+        nat: String?,
+    ): PagingSource<Int, UserEntity>
 
-    @Insert
-    fun insertAll(users: List<UserEntity>)
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(users: List<UserEntity>)
 }

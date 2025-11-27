@@ -10,7 +10,7 @@ data class UserListDto(
     @SerialName("info")
     val info: Info,
     @SerialName("results")
-    val userDtos: List<UserDto>
+    val results: List<UserDto>
 )
 
 @Serializable
@@ -157,5 +157,3 @@ data class Timezone(
     @SerialName("offset")
     val offset: String
 )
-
-

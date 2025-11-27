@@ -7,10 +7,13 @@ import java.util.Date
 
 @Entity
 internal data class UserEntity(
-    @PrimaryKey val uuid: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val uuid: String,
     val phone: String,
     val gender: String,
     val email: String,
+    val nat: String,
     @Embedded val name: UserNameInfoEntity,
     @Embedded val birthday: UserBirthdayInfoEntity,
     @Embedded val location: UserLocationInfoEntity,

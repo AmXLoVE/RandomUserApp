@@ -6,19 +6,11 @@ import ru.myapplication.randomuserapp.data.datasource.remote.model.UserListDto
 
 interface RandomUserApi {
 
-    @GET
+    @GET("/api")
     suspend fun getUserList(
+        @Query("page") page: Int? = null,
+        @Query("results") results: Int? = null,
         @Query("gender") gender: String? = null,
-        @Query("name") name: String? = null,
-        @Query("location") location: String? = null,
-        @Query("email") email: String? = null,
-        @Query("login") login: String? = null,
-        @Query("registered") registered: String? = null,
-        @Query("dob") dob: String? = null,
-        @Query("phone") phone: String? = null,
-        @Query("cell") cell: String? = null,
-        @Query("id") id: String? = null,
-        @Query("picture") picture: String? = null,
         @Query("nat") nat: String? = null,
     ): UserListDto
 }

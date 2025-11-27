@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.paging)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)

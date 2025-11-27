@@ -6,6 +6,7 @@ data class UserDomain(
     val phone: String,
     val gender: UserGenderDomain,
     val email: String,
+    val nat: String,
     val name: UserNameInfoDomain,
     val birthday: UserBirthdayInfoDomain,
     val location: UserLocationInfoDomain,

@@ -8,18 +8,14 @@ internal class UserListRemoteDataSource @Inject constructor(
     private val api: RandomUserApi,
 ) {
 
-    suspend fun requestUserList(params: UpdateUserListParams): UserListDto = api.getUserList(
+    suspend fun requestUserList(
+        params: UpdateUserListParams,
+        page: Int? = null,
+        results: Int? = null,
+    ): UserListDto = api.getUserList(
+        page = page,
+        results = results,
         gender = params.gender,
-        name = params.name,
-        location = params.location,
-        email = params.email,
-        login = params.login,
-        registered = params.registered,
-        dob = params.dob,
-        phone = params.phone,
-        cell = params.cell,
-        id = params.id,
-        picture = params.picture,
         nat = params.nat,
     )
 }

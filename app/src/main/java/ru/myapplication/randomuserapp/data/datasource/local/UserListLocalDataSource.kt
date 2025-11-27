@@ -1,18 +1,20 @@
 package ru.myapplication.randomuserapp.data.datasource.local
 
-import kotlinx.coroutines.flow.Flow
+import androidx.paging.PagingSource
 import ru.myapplication.randomuserapp.data.datasource.local.model.UserEntity
+import ru.myapplication.randomuserapp.data.repository.model.UpdateUserListParams
 import javax.inject.Inject
 
 internal class UserListLocalDataSource @Inject constructor(
     private val userListDao: UserListDao,
 ) {
 
-    fun observe(): Flow<List<UserEntity>> = userListDao.getAll()
+    suspend fun updateUserList(userList: List<UserEntity>) = userListDao.insertAll(users = userList)
 
-    fun update(userList: List<UserEntity>) {
-        userListDao.insertAll(
-            users = userList,
-        )
-    }
+    fun getUserListWithPagination(
+        params: UpdateUserListParams,
+    ): PagingSource<Int, UserEntity> = userListDao.pagingSource(
+        gender = params.gender,
+        nat = params.nat,
+    )
 }

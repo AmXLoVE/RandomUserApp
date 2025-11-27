@@ -1,24 +1,35 @@
 package ru.myapplication.randomuserapp.presentation.userlist
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.stateIn
+import ru.myapplication.randomuserapp.data.repository.model.UpdateUserListParams
 import ru.myapplication.randomuserapp.domain.userlist.UserListRepository
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListState
 import ru.myapplication.randomuserapp.presentation.userlist.model.UserListUserDetail
 import javax.inject.Inject
 
 internal class UserListViewModel @Inject constructor(
-    private val userListRepository: UserListRepository,
+    userListRepository: UserListRepository,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<UserListState> = MutableStateFlow(UserListState.Loading)
     val state: StateFlow<UserListState> = _state.asStateFlow()
+
+    val usersPaginationFlow = userListRepository
+        .loadWithPagination(UpdateUserListParams(gender = "female"))
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Lazily,
+            initialValue = PagingData.empty(),
+        )
 
     init {
         viewModelScope.launch {
