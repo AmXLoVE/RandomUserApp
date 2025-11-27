@@ -30,12 +30,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
@@ -126,10 +123,10 @@ internal fun UserDetailScreenPager(
             ) {
 
                 when (selectedTab) {
-                    0 -> FirstTabContent(userDetails)
-                    1 -> SecondTabContent(userDetails)
-                    2 -> ThirdTabContent(userDetails)
-                    3 -> FourthTabContent(userDetails)
+                    0 -> PersonalInfoTabContent( personalInfo = userDetails.personalInfo)
+                    1 -> PhoneInfoTabContent(phoneInfo = userDetails.phoneInfo)
+                    2 -> EmailInfoTabContent(emailInfo = userDetails.emailInfo)
+                    3 -> LocationInfoTabContent(locationInfo = userDetails.locationInfo)
                 }
             }
         }
@@ -137,82 +134,82 @@ internal fun UserDetailScreenPager(
 }
 
 @Composable
-private fun FirstTabContent(
-    userDetails: UserDetailModel,
+private fun PersonalInfoTabContent(
+    personalInfo: UserDetailPersonalInfo,
 ) {
     TabContent(
         title = "First name",
-        text = userDetails.personalInfo.firstName
+        text = personalInfo.firstName
     )
     TabContent(
         title = "Last name",
-        text = userDetails.personalInfo.lastName
+        text = personalInfo.lastName
     )
     TabContent(
         title = "Gender",
-        text = userDetails.personalInfo.gender
+        text = personalInfo.gender
     )
     TabContent(
         title = "Age",
-        text = userDetails.personalInfo.age
+        text = personalInfo.age
     )
     TabContent(
         title = "Date of bitrh",
-        text = userDetails.personalInfo.birthdate
+        text = personalInfo.birthdate
     )
 }
 
 @Composable
-private fun SecondTabContent(
-    userDetails: UserDetailModel,
+private fun PhoneInfoTabContent(
+    phoneInfo: UserDetailPhoneInfo,
 ) {
     TabContent(
         title = "Phone",
-        text = userDetails.phoneInfo.phoneNumber
+        text = phoneInfo.phoneNumber
     )
     TabContent(
         title = "Cell",
-        text = userDetails.phoneInfo.cellNumber
+        text = phoneInfo.cellNumber
     )
 }
 
 @Composable
-private fun ThirdTabContent(
-    userDetails: UserDetailModel,
+private fun EmailInfoTabContent(
+    emailInfo: UserDetailEmailInfo,
 ) {
     TabContent(
         title = "E-mail",
-        text = userDetails.emailInfo.email
+        text = emailInfo.email
     )
     TabContent(
         title = "Username",
-        text = userDetails.emailInfo.username
+        text = emailInfo.username
     )
 }
 
 @Composable
-private fun FourthTabContent(
-    userDetails: UserDetailModel,
+private fun LocationInfoTabContent(
+    locationInfo: UserDetailLocationInfo,
 ) {
     TabContent(
         title = "City",
-        text = userDetails.locationInfo.city
+        text = locationInfo.city
     )
     TabContent(
         title = "State",
-        text = userDetails.locationInfo.state
+        text = locationInfo.state
     )
     TabContent(
         title = "Street",
-        text = userDetails.locationInfo.street
+        text = locationInfo.street
     )
     TabContent(
         title = "Postcode",
-        text = userDetails.locationInfo.postcode
+        text = locationInfo.postcode
     )
     TabContent(
         title = "Coordinates",
-        text = userDetails.locationInfo.coordinates
+        text = locationInfo.coordinates
     )
 }
 
