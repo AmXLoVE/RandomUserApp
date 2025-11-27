@@ -80,7 +80,7 @@ private fun UserListScreenChoice(
                 items(state.itemCount) { index ->
                     UserListItemWidget(
                         firstName = state[index]?.name?.firstName ?: "",
-                        lastName = state[index]?.name?.firstName ?: "",
+                        lastName = state[index]?.name?.lastName ?: "",
                         phone = state[index]?.phone ?: "",
                         nat = state[index]?.nat ?: "",
                         pictureUrl = state[index]?.picture?.medium ?: "",
