@@ -48,7 +48,8 @@ internal fun UserDetailScreenContent(
             modifier = Modifier
                 .offset(y = 95.dp)
                 .size(130.dp)
-                .clip(CircleShape),
+                .clip(CircleShape)
+                .background(color = Color.LightGray),
             )
 
         Column(
