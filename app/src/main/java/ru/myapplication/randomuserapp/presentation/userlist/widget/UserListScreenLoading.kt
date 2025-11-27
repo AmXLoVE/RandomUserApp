@@ -34,6 +34,144 @@ import androidx.compose.ui.zIndex
 import ru.myapplication.randomuserapp.presentation.common.shimmerLoading
 
 @Composable
+internal fun UserListItemShimmer() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(140.dp),
+        horizontalArrangement = Arrangement.Center,
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+                .padding(horizontal = 4.dp)
+                .dropShadow(
+                    shape = RoundedCornerShape(12.dp),
+                    shadow = Shadow(
+                        spread = 1.dp,
+                        radius = 32.dp,
+                        color = Color.LightGray,
+                    )
+                )
+                .clip(RoundedCornerShape(12.dp))
+                .background(
+                    color = Color.White,
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .size(120.dp)
+                        .padding(8.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .shimmerLoading(),
+                    contentAlignment = Alignment.Center
+                ) {}
+
+                Column(
+                    modifier = Modifier
+                        .padding(
+                            start = 8.dp,
+                            end = 8.dp
+                        )
+                        .weight(1f)
+                ) {
+
+                    Row(
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .height(16.dp)
+                                .width(60.dp)
+                                .clip(RoundedCornerShape(25))
+                                .shimmerLoading(),
+                            contentAlignment = Alignment.Center
+                        ) {}
+
+                        Spacer(
+                            modifier = Modifier
+                                .width(8.dp)
+                        )
+
+                        Box(
+                            modifier = Modifier
+                                .height(16.dp)
+                                .width(100.dp)
+                                .clip(RoundedCornerShape(25))
+                                .shimmerLoading(),
+                            contentAlignment = Alignment.Center
+                        ) {}
+                    }
+
+                    Spacer(
+                        modifier = Modifier
+                            .height(12.dp)
+                    )
+
+                    Row() {
+                        Box(
+                            modifier = Modifier
+                                .height(16.dp)
+                                .width(90.dp)
+                                .clip(RoundedCornerShape(25))
+                                .shimmerLoading(),
+                            contentAlignment = Alignment.Center
+                        ) {}
+                    }
+
+                    Spacer(
+                        modifier = Modifier
+                            .height(12.dp)
+                    )
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+
+                        Box(
+                            modifier = Modifier
+                                .size(23.dp)
+                                .clip(CircleShape)
+                                .shimmerLoading()
+                        ) {}
+
+                        Spacer(
+                            modifier = Modifier
+                                .width(4.dp)
+                        )
+
+                        Box(
+                            modifier = Modifier
+                                .height(16.dp)
+                                .width(30.dp)
+                                .clip(RoundedCornerShape(25))
+                                .shimmerLoading(),
+                            contentAlignment = Alignment.Center
+                        ) {}
+                    }
+                }
+
+                Box(
+                    modifier = Modifier
+                        .align(alignment = Alignment.Top)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .padding(12.dp)
+                            .size(25.dp)
+                            .shimmerLoading(),
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
 internal fun UserListScreenLoading() {
     Column(
         modifier = Modifier
@@ -42,140 +180,7 @@ internal fun UserListScreenLoading() {
         repeat(
             times = 3,
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(140.dp),
-                horizontalArrangement = Arrangement.Center,
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(8.dp)
-                        .padding(horizontal = 4.dp)
-                        .dropShadow(
-                            shape = RoundedCornerShape(12.dp),
-                            shadow = Shadow(
-                                spread = 1.dp,
-                                radius = 32.dp,
-                                color = Color.LightGray,
-                            )
-                        )
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(
-                            color = Color.White,
-                        )
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .size(120.dp)
-                                .padding(8.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .shimmerLoading(),
-                            contentAlignment = Alignment.Center
-                        ) {}
 
-                        Column(
-                            modifier = Modifier
-                                .padding(
-                                    start = 8.dp,
-                                    end = 8.dp
-                                )
-                                .weight(1f)
-                        ) {
-
-                            Row(
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .height(16.dp)
-                                        .width(60.dp)
-                                        .clip(RoundedCornerShape(25))
-                                        .shimmerLoading(),
-                                    contentAlignment = Alignment.Center
-                                ) {}
-
-                                Spacer(
-                                    modifier = Modifier
-                                        .width(8.dp)
-                                )
-
-                                Box(
-                                    modifier = Modifier
-                                        .height(16.dp)
-                                        .width(100.dp)
-                                        .clip(RoundedCornerShape(25))
-                                        .shimmerLoading(),
-                                    contentAlignment = Alignment.Center
-                                ) {}
-                            }
-
-                            Spacer(
-                                modifier = Modifier
-                                    .height(12.dp)
-                            )
-
-                            Row() {
-                                Box(
-                                    modifier = Modifier
-                                        .height(16.dp)
-                                        .width(90.dp)
-                                        .clip(RoundedCornerShape(25))
-                                        .shimmerLoading(),
-                                    contentAlignment = Alignment.Center
-                                ) {}
-                            }
-
-                            Spacer(
-                                modifier = Modifier
-                                    .height(12.dp)
-                            )
-
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-
-                                Box(
-                                    modifier = Modifier
-                                        .size(23.dp)
-                                        .clip(CircleShape)
-                                        .shimmerLoading()
-                                ) {}
-
-                                Spacer(
-                                    modifier = Modifier
-                                        .width(4.dp)
-                                )
-
-                                Box(
-                                    modifier = Modifier
-                                        .height(16.dp)
-                                        .width(30.dp)
-                                        .clip(RoundedCornerShape(25))
-                                        .shimmerLoading(),
-                                    contentAlignment = Alignment.Center
-                                ) {}
-                            }
-                        }
-
-                        Box(
-                            modifier = Modifier
-                                .align(alignment = Alignment.Top)
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .padding(12.dp)
-                                    .size(25.dp)
-                                    .shimmerLoading(),
-                            )
-                        }
-                    }
-                }
-            }
         }
     }
 

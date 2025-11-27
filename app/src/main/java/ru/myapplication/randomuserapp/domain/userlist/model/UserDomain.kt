@@ -3,6 +3,7 @@ package ru.myapplication.randomuserapp.domain.userlist.model
 import java.util.Date
 
 data class UserDomain(
+    val id: Long,
     val phone: String,
     val gender: UserGenderDomain,
     val email: String,

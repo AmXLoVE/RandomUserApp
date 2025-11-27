@@ -34,11 +34,13 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.myapplication.randomuserapp.presentation.theme.DarkBlue
-import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateData
+import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateState
 
 @Composable
 internal fun UserCreateScreenContent(
-    state: UserCreateData,
+    state: UserCreateState.Content,
+    onGenderSelected: (String) -> Unit,
+    onNationalitySelected: (String) -> Unit,
     onGenerate: () -> Unit,
 ) {
     Column(
@@ -53,7 +55,9 @@ internal fun UserCreateScreenContent(
                 .fillMaxWidth()
         ) {
             PrintDropdown(
-                items = state.genderList,
+                items = state.genders,
+                selectedItem = state.selectedGender,
+                onSelect = onGenderSelected,
             )
         }
 
@@ -64,7 +68,9 @@ internal fun UserCreateScreenContent(
                 .fillMaxWidth()
         ) {
             PrintDropdown(
-                items = state.countryList,
+                items = state.nationality,
+                selectedItem = state.selectedNationality,
+                onSelect = onNationalitySelected,
             )
         }
 
@@ -103,9 +109,10 @@ internal fun UserCreateScreenContent(
 @Composable
 private fun PrintDropdown(
     items: List<String>,
+    selectedItem: String,
+    onSelect: (String) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selected by remember { mutableStateOf(items.first()) }
 
     Button(
         modifier = Modifier
@@ -133,7 +140,7 @@ private fun PrintDropdown(
             Text(
                 modifier = Modifier
                     .align(alignment = Alignment.CenterStart),
-                text = selected,
+                text = selectedItem,
                 fontSize = 16.sp,
             )
 
@@ -168,7 +175,7 @@ private fun PrintDropdown(
                     )
                 },
                 onClick = {
-                    selected = option
+                    onSelect(option)
                     expanded = false
                 }
             )
@@ -191,17 +198,21 @@ private fun arrowIconOpening(
 @Composable
 private fun Preview() {
     UserCreateScreenContent(
-        state = UserCreateData(
-            genderList = listOf(
+        state = UserCreateState.Content(
+            genders = listOf(
                 "Male",
                 "Female",
             ),
-            countryList = listOf(
+            nationality = listOf(
                 "Russian Federation",
                 "United States",
                 "Australia",
-            )
+            ),
+            selectedGender = "Male",
+            selectedNationality = "Russian Federation",
         ),
+        onGenderSelected = {},
+        onNationalitySelected = {},
         onGenerate = {},
     )
 }

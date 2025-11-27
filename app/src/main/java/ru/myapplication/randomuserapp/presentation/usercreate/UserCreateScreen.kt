@@ -1,6 +1,5 @@
 package ru.myapplication.randomuserapp.presentation.usercreate
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,7 +11,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ru.myapplication.randomuserapp.presentation.LocalNavController
 import ru.myapplication.randomuserapp.presentation.common.USER_LIST_DEST
-import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateData
 import ru.myapplication.randomuserapp.presentation.usercreate.model.UserCreateState
 import ru.myapplication.randomuserapp.presentation.usercreate.widget.TopBar
 import ru.myapplication.randomuserapp.presentation.usercreate.widget.UserCreateScreenContent
@@ -24,21 +22,24 @@ internal fun UserCreateScreen(
     vm: UserCreateViewModel,
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
-    val nav = LocalNavController.current
+    val navController = LocalNavController.current
 
     UserCreateScreenChoice(
         state = state,
+        onGenderSelected = vm::onGenderSelected,
+        onNationalitySelected = vm::onNationalitySelected,
         onGenerate = {
-            vm.generateUser()
-            nav.navigate(USER_LIST_DEST)
+            vm.onGenerateClick(navController = navController)
         },
-        onPopStackBack = { nav.navigate(USER_LIST_DEST) },
+        onPopStackBack = { navController.navigate(USER_LIST_DEST) },
     )
 }
 
 @Composable
 private fun UserCreateScreenChoice(
     state: UserCreateState,
+    onGenderSelected: (String) -> Unit,
+    onNationalitySelected: (String) -> Unit,
     onGenerate: () -> Unit,
     onPopStackBack: () -> Unit,
 ) {
@@ -48,17 +49,16 @@ private fun UserCreateScreenChoice(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues = paddingValues)
-        )
-        {
+                .padding(paddingValues = paddingValues),
+        ) {
 
-            TopBar(
-                onPopStackBack = onPopStackBack,
-            )
+            TopBar(onPopStackBack = onPopStackBack)
 
             when (state) {
                 is UserCreateState.Content -> UserCreateScreenContent(
-                    state = state.userCreateData,
+                    state = state,
+                    onGenderSelected = onGenderSelected,
+                    onNationalitySelected = onNationalitySelected,
                     onGenerate = onGenerate,
                 )
 
@@ -77,19 +77,21 @@ private fun UserCreateScreenChoice(
 private fun PreviewContent() {
     UserCreateScreenChoice(
         state = UserCreateState.Content(
-            UserCreateData(
-                genderList = listOf(
-                    "Male",
-                    "Female",
-                ),
-                countryList = listOf(
-                    "Russian Federation",
-                    "United States",
-                    "Australia"
-                ),
-            )
+            genders = listOf(
+                "Male",
+                "Female",
+            ),
+            nationality = listOf(
+                "Russian Federation",
+                "United States",
+                "Australia",
+            ),
+            selectedGender = "Male",
+            selectedNationality = "Russian Federation",
         ),
         onGenerate = {},
+        onGenderSelected = {},
+        onNationalitySelected = {},
         onPopStackBack = {},
     )
 }
@@ -100,6 +102,8 @@ private fun PreviewLoading() {
     UserCreateScreenChoice(
         state = UserCreateState.Loading,
         onGenerate = {},
+        onGenderSelected = {},
+        onNationalitySelected = {},
         onPopStackBack = {},
     )
 }
@@ -110,6 +114,8 @@ private fun PreviewError() {
     UserCreateScreenChoice(
         state = UserCreateState.Error,
         onGenerate = {},
+        onGenderSelected = {},
+        onNationalitySelected = {},
         onPopStackBack = {},
     )
 }

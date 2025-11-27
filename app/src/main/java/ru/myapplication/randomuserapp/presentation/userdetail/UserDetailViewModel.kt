@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailArgs
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailEmailInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailLocationInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailModel
@@ -15,13 +16,14 @@ import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPe
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailPhoneInfo
 import ru.myapplication.randomuserapp.presentation.userdetail.model.UserDetailState
 import javax.inject.Inject
-import kotlin.toString
 
 internal class UserDetailViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _state: MutableStateFlow<UserDetailState> = MutableStateFlow(UserDetailState.Loading)
     val state: StateFlow<UserDetailState> = _state.asStateFlow()
+
+    private var args: UserDetailArgs? = null
 
     fun getUserDetail(userId: Int) {
         try{
@@ -61,5 +63,9 @@ internal class UserDetailViewModel @Inject constructor(
         catch (e: Exception) {
             UserDetailState.Error
         }
+    }
+
+    fun init(args: UserDetailArgs) {
+        this.args = args
     }
 }

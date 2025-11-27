@@ -16,7 +16,6 @@ class ViewModelFactory @Inject constructor(
             ?: creators.entries.firstOrNull { modelClass.isAssignableFrom(it.key) }?.value
             ?: throw IllegalArgumentException("Unknown ViewModel class $modelClass")
 
-
         return creator.get() as T
     }
 }

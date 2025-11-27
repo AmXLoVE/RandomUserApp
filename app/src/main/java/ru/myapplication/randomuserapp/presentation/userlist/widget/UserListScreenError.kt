@@ -31,9 +31,7 @@ internal fun UserListScreenError(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(
-                top = 32.dp
-            ),
+            .padding(top = 32.dp),
     ) {
         Column(
             modifier = Modifier
@@ -47,11 +45,11 @@ internal fun UserListScreenError(
                         color = Color.LightGray,
                     )
                 )
-                .clickable { onReloadPage},
+                .clickable(onClick = onReloadPage),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Row() {
+            Row {
                 Text(
                     text = "Не удалось загрузить содержимое"
                 )
@@ -63,13 +61,7 @@ internal fun UserListScreenError(
             )
 
             Icon(
-                modifier = Modifier
-                    .size(40.dp),
-//                    .border(
-//                        width = 1.dp,
-//                        color = Color.DarkGray,
-//                        shape = CircleShape,
-//                    )
+                modifier = Modifier.size(40.dp),
                 painter = painterResource(R.drawable.reload),
                 contentDescription = "",
             )

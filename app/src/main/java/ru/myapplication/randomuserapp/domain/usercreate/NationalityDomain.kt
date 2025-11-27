@@ -1,0 +1,25 @@
+package ru.myapplication.randomuserapp.domain.usercreate
+
+internal enum class NationalityDomain(val value: String) {
+    AU("AU"),
+    BR("BR"),
+    CA("CA"),
+    CH("CH"),
+    DE("DE"),
+    DK("DK"),
+    ES("ES"),
+    FI("FI"),
+    FR("FR"),
+    GB("GB"),
+    IE("IE"),
+    IN("IN"),
+    IR("IR"),
+    MX("MX"),
+    NL("NL"),
+    NO("NO"),
+    NZ("NZ"),
+    RS("RS"),
+    TR("TR"),
+    UA("UA"),
+    US("US"),
+}

@@ -54,6 +54,7 @@ internal fun UserDto.toEntity() = UserEntity(
 internal fun UserListDto?.toEntity() = this?.results?.map { it.toEntity() } ?: emptyList()
 
 internal fun UserEntity.toDomain() = UserDomain(
+    id = id,
     phone = phone,
     gender = when (gender) {
         "male" -> UserGenderDomain.MALE
